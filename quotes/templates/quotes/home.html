@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load tz %}
+
+
+<!-- <div class="row">
+  {% for quote in quotes %}
+<div class="row">
+  <div class="col-md-12">
+    <h4><span class="oi oi-double-quote-serif-left"></span>{{ quote.quote }}
+    <span class="oi oi-double-quote-serif-right"></span></h4>
+    <p> by {{quote.author}} <span class="text-muted">  {% localtime on %}
+      {{ quote.pub_date|date:" M d, Y" }}
+      {% endlocaltime %}</span></p>
+    <h6 style="display:inline">Tags:</h6>
+    {% for categories in quote.categories.all %}
+      <span class="badge badge-secondary">{{ categories }}</span>
+    {% endfor %}
+    {% empty %}
+    <h3 align='center'>Sorry! no quotes until now........</h3>
+  </div> 
+</div>
+{% endfor %}
+<hr>
+
+<br>
+
+
+</div> -->
+
+<div class="row">
+
+  {% for quote in page_obj %}
+  <div class="p-1" style="margin: auto">
+    <div class="card" style="max-width: 20rem; border: 2px solid black; opacity: 0.9;">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text" style="font-size: larger;">{{ quote.quote }}</p>
+        <p class="card-text"> by
+          {% if quote.author.username != user.username %}
+          <a href="{% url 'showProfile' quote.author.slugged_username %}">{{ quote.author}}</a>
+          {% else %}
+          <a href="{% url 'profile' user.id %}">{{ quote.author }}</a>
+          {% endif %}
+          <span class="text-muted"> {% localtime on %}
+            {{ quote.pub_date|date:" M d, Y" }}
+            {% endlocaltime %}</span></p>
+
+        <h6 class="card-text" style="display:inline">Tags:</h6>
+        {% for categories in quote.categories.all %}
+        <span class="badge badge-secondary ">{{ categories }}</span>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+<br>
+<br>
+
+<div class=" row justify-content-center">
+  {% if page_obj.has_other_pages %}
+
+  <ul class="pagination text-center">
+    {% if page_obj.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in page_obj.paginator.page_range %}
+    {% if page_obj.number == i %}
+    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+    {% endif %}
+  </ul>
+
+  {% endif %}
+</div>
+
+
+<!-- <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% for i in page_obj.paginator.page_range %}
+        {% if page_obj.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+
+        <span>
+          {{ paginator.page_range }} 
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div> -->
+<a class="floating-button" href="{% url 'create' %}"><span class="oi oi-plus"></span></a>
+{% endblock %}

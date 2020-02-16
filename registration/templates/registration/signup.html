@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row justify-content-center" style="min-height: 88vh;">
+    <div class="col-sm-6 align-self-center px-3" style="background-color:aliceblue">
+
+        <br>
+        <h3 class="text-center" style="font-family: 'Indie Flower', cursive; color: blue;">Join HeartArcade</h3>
+        <br>
+        <form action="{% url 'signup' %}" method="post">
+
+                 {% comment %} {% csrf_token %}
+                {% if form.errors %}
+                {% for field in form %}
+                {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                {{ form.password }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.confirm_password.id_for_label }}">{{ form.confirm_password.label}}</label>
+                    {{ form.confirm_password }}
+                </div>  {% endcomment %}
+             {% csrf_token %}
+            {{ form|crispy }} 
+            <br>
+
+            <div class="text-center">
+                <input type="submit" class="btn btn-success btn-block" value="Create Account">
+            </div>
+            
+        </form>
+        <br>
+        <div class="text-center">
+            <p>Already have an account ? <a href="{% url 'login' %}">Login</a></p>   
+        </div>
+        <br>
+        <hr>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-primary my-1" style="background-color: #4267B2 !important; 
+            min-width: 15em;" onclick="window.location='{% url 'social:begin' 'facebook' %}'">
+                <i class="fab fa-facebook"></i> Sign up using Facebook</a></button>
+           
+            <button type="button" class="btn btn-primary " style="background-color: #1DA1F2 !important;
+            min-width: 15em" onclick="window.location='{% url 'social:begin' 'twitter' %}'">
+                    <i class="fab fa-twitter"></i> Sign up using Twitter</a></button>
+        </div>
+           
+            
+        
+            
+               
+       
+        
+        <br>
+        <br>
+      
+        
+    </div>
+
+
+</div>
+{% endblock %}

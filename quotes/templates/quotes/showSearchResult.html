@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load tz %}
+
+
+
+<div class="row">
+    {% for profile in profile %}
+    {% for quote in profile.quote_set.all %}
+    <div class="p-1" style="margin: auto">
+        <div class="card" style="max-width: 20rem; border: 2px solid black; opacity: 0.9;">
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text" style="font-size: larger;">{{ quote.quote }}</p>
+                <p class="card-text"> by
+                    {% if quote.author.username != user.username %}
+                    <a href="{% url 'showProfile' quote.author.slugged_username %}">{{ quote.author}}</a>
+                    {% else %}
+                    <a href="{% url 'profile' user.id %}">{{ quote.author }}</a>
+                    {% endif %}
+                    <span class="text-muted"> {% localtime on %}
+                        {{ quote.pub_date|date:" M d, Y" }}
+                        {% endlocaltime %}</span></p>
+
+                <h6 class="card-text" style="display:inline">Tags:</h6>
+                {% for categories in quote.categories.all %}
+                <span class="badge badge-secondary ">{{ categories }}</span>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+
+    {% empty %}
+    <div class="col-sm-12">
+        <div class="alert alert-danger text-center" role="alert">
+            <p> No author named {{ searchResult }} Found !! </p> 
+         </div>
+    </div>
+   
+    {% endfor %}
+
+</div>
+<br>
+<br>
+<a class="floating-button" href="{% url 'create' %}"><span class="oi oi-plus"></span></a>
+{% endblock %}

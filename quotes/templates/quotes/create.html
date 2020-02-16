@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class=row>
+    <div class="col-sm-12 align-self-center">
+        <br>
+        <br>
+        <h3 class="text-center" style="font-family: 'Indie Flower', cursive; color: blue;">Write your own quote</h3>
+        <br>
+        <br>
+        <br>
+        <form action="{% url 'create' %}" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+
+            <div class="text-center">
+                <input type="submit" class="btn btn-success" value="Submit">
+            </div>
+           
+            
+        </form>
+        
+        {% endblock %}
+    </div>
+
+</div>

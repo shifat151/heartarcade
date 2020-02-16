@@ -105,7 +105,7 @@ SOCIAL_AUTH_TWITTER_KEY= config('SOCIAL_AUTH_TWITTER_KEY')
 SOCIAL_AUTH_TWITTER_SECRET= config('SOCIAL_AUTH_TWITTER_SECRET')
 #SOCIAL_AUTH_FACEBOOK_SCOPE contains a list of permissions to access the data properties our application requires.
 #  The email and user_link permissions request access to the user’s Facebook email and profile link respectively.
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_TWITTER_SCOPE = ['email', 'user_link']
 
 #SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS has a key — fields — 

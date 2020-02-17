@@ -24,9 +24,9 @@
       <p class="card-text" style="font-style: italic;"><span class="oi oi-envelope-closed"></span> {{ profile.email }}
       </p>
       <div class="card-text">
-         <!-- <button type="button" class="btn btn-outline-dark btn-sm"
-          onclick="location.href = '{% url 'editProfile' %}';">Change Username</button>  -->
-          <a href="{% url 'editProfile' %}"> Change Username </a>
+         <button type="button" class="btn btn-outline-dark btn-sm"
+          onclick="location.href = '{% url 'editProfile' %}';">Change Username</button> 
+          
       </div>
       <br>
 
@@ -50,10 +50,9 @@
         {% endif %}
         </p>
         <div class="card-text">
-          <!-- <button type="button" class="btn btn-outline-dark btn-sm"
-            onclick="window.location.href = '{% url 'editSocialProfile' %}';">Change Username
-          </button> -->
-          <a href="{% url 'editSocialProfile' %}">Change Username</a>
+          <button type="button" class="btn btn-outline-dark btn-sm"
+            onclick="location.href = '{% url 'editSocialProfile' %}';">Change Username</button>
+          
         </div>
         <br>
         
@@ -97,10 +96,8 @@
                   {% endfor %}
                 </p>
                 <div class="card-text">
-                  <!-- <button class="btn btn-outline-primary btn-sm float-right" title="Edit quote"
+                  <button class="btn btn-outline-primary btn-sm float-right" title="Edit quote"
                     onclick="window.location='{% url 'editQuote' quote.id %}';"><i class="fas fa-edit"></i></button>
-                   -->
-                   <a href="{% url 'editQuote' quote.id %}"><i class="fas fa-edit"></i></a>
                   <button type="button" class="btn btn-outline-danger btn-sm float-right mr-2" title="Delete quote"
                     data-toggle="modal" data-target="#exampleModalCenter">
                     <span style="color: red;" class="oi oi-trash"></span>
@@ -167,4 +164,4 @@
 
 
   <a class="floating-button" href="{% url 'create' %}"><span class="oi oi-plus"></span></a>
-              {% endblock %}
+{% endblock %}

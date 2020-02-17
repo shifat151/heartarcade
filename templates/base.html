@@ -16,7 +16,7 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
-            /* background-image: url("{% static 'white_back.jpg' %}"); */
+            background-image: url("{% static 'white_back.jpg' %}");
             background-repeat: no-repeat;
             background-size: cover;
 
@@ -128,9 +128,9 @@
 
                         <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
 
-                        <!-- <button type="button" class="btn ml-1" onclick="window.location='{% url 'signup'%}'"
-                            style="max-width: 5em;">Sign up</button> -->
-                        <a href="{% url 'signup'%}">Sign up</a>
+                        <button type="button" class="btn ml-1" onclick="location.href='{% url 'signup'%}'"
+                            style="max-width: 5em;">Sign up</button>
+                        
 
 
                         {% endif %}
@@ -164,9 +164,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        <!-- <button type="button" class="btn btn-danger"
-                            onclick="window.location='{% url 'logout' %}';">Logout</button> -->
-                            <a href="{% url 'logout' %}">Logout</a>
+                        <button type="button" class="btn btn-danger"
+                            onclick="location.href='{% url 'logout' %}';">Logout</button>
+                            
                     </div>
                 </div>
             </div>

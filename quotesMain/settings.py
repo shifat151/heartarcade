@@ -1,4 +1,3 @@
-
 import os
 import django_heroku
 from decouple import config, Csv
@@ -88,8 +87,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 #social auth
-                'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect', # <--
+                'social_django.context_processors.backends',  
+                'social_django.context_processors.login_redirect', 
                 #Context_processor for quote Category
                 'quotes.context_processors.add_quotesCategory_to_context',
                 

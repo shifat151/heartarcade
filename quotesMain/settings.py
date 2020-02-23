@@ -1,5 +1,4 @@
 import os
-import django_heroku
 from decouple import config, Csv
 
 
@@ -14,9 +13,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -39,11 +38,20 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'django.contrib.postgres',
+
+    # rest framework
+    'rest_framework',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+REST_FRAMEWORK={
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 1
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -192,4 +200,3 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'quotesMain/static')
 ]
 
-django_heroku.settings(locals())

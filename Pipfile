@@ -15,6 +15,7 @@ gunicorn = "*"
 python-decouple = "*"
 django-autoslug = "*"
 whitenoise = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"

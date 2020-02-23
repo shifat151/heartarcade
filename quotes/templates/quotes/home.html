@@ -38,9 +38,9 @@
         <p class="card-text" style="font-size: larger;">{{ quote.quote }}</p>
         <p class="card-text"> by
           {% if quote.author.username != user.username %}
-          <a href="{% url 'showProfile' quote.author.slugged_username %}">{{ quote.author}}</a>
+          <a href="{% url 'showProfile' quote.author.slugged_username %}">{{ quote.author.username}}</a>
           {% else %}
-          <a href="{% url 'profile' user.id %}">{{ quote.author }}</a>
+          <a href="{% url 'profile' user.id %}">{{ quote.author.username }}</a>
           {% endif %}
           <span class="text-muted"> {% localtime on %}
             {{ quote.pub_date|date:" M d, Y" }}

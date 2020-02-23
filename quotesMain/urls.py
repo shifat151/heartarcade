@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls import url
 from quotes import views
 from django.contrib.auth import views as auth_views
 
@@ -14,4 +15,7 @@ urlpatterns = [
         success_url='/'),name="password_change"),
     path('accounts/', include('django.contrib.auth.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
+    #rest framweok urls
+    url(r'^api-auth/', include('rest_framework.urls')),
+    path('api/quote/', include('quotes.api.urls', namespace='quotes_api')),
 ]

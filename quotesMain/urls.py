@@ -16,6 +16,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
     #rest framweok urls
-    url(r'^api-auth/', include('rest_framework.urls')),
     path('api/quote/', include('quotes.api.urls', namespace='quotes_api')),
+    path('api/account/', include('registration.api.urls', namespace='registration_api')),
+        
+        
+
 ]

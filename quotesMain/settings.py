@@ -41,10 +41,15 @@ INSTALLED_APPS = [
 
     # rest framework
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 REST_FRAMEWORK={
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 1
 }

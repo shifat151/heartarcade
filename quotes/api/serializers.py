@@ -13,3 +13,12 @@ class QuotesSerializer(serializers.ModelSerializer):
         model = Quote
         fields = ['quote','author','categories','pub_date', 'slugged_username']
     
+class QuoteDetailSerializer(serializers.ModelSerializer):
+    categories = serializers.StringRelatedField(many=True, read_only=True)
+    class Meta:
+        model = Quote
+        fields = ['quote','categories']
+
+
+
+

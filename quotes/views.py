@@ -67,7 +67,8 @@ def create(request):
 
 @login_required()
 def editQuote(request, quote_id):
-    singlequote=Quote.objects.get(pk=quote_id)
+
+    singlequote=get_object_or_404(Quote,id=quote_id)
     if request.method=='POST':
         form=editForm(request.POST)
         if form.is_valid():

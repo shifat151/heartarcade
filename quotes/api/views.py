@@ -5,10 +5,10 @@ from rest_framework.permissions import IsAuthenticated
 
 
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.generics import ListAPIView, CreateAPIView
-from quotes.models import Quote
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
+from quotes.models import Quote, QuoteCategory
 from registration.models import User
-from quotes.api.serializers import QuotesSerializer, QuoteDetailSerializer, QuoteCreateSerializer
+from quotes.api.serializers import QuotesSerializer, QuoteDetailSerializer, QuoteCreateSerializer, QuoteCategorySerializer
 from django.shortcuts import get_object_or_404
 
 # @api_view(['GET',])
@@ -25,6 +25,15 @@ class apiQuotesView(ListAPIView):
     queryset=Quote.objects.order_by('-pub_date').prefetch_related('author')
     serializer_class=QuotesSerializer
     Pagiantion_class=PageNumberPagination
+    permission_classes = []
+
+
+class apiCategoryView(ListAPIView):
+    queryset=QuoteCategory.objects.all()
+    serializer_class=QuoteCategorySerializer
+    permission_classes = []
+
+
 
 @api_view(['GET',])
 def apiQuoteDetailView(request, quote_id):
@@ -89,5 +98,6 @@ def apiQuoteDeleteView(request, quote_id):
 
 class apiQuoteCreateView(CreateAPIView):
     serializer_class = QuoteCreateSerializer
+    permission_classes = [IsAuthenticated,]
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

@@ -12,6 +12,11 @@ class QuotesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quote
         fields = ['quote','author','categories','pub_date', 'slugged_username']
+
+class QuoteCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=QuoteCategory
+        fields='__all__'
     
 class QuoteDetailSerializer(serializers.ModelSerializer):
     categories = serializers.StringRelatedField(many=True, read_only=True)
@@ -20,12 +25,23 @@ class QuoteDetailSerializer(serializers.ModelSerializer):
         model = Quote
         fields = ['quote','categories']
 
+class CustomPKRelatedField(serializers.PrimaryKeyRelatedField):
+    # A PrimaryKeyRelatedField derivative that uses named field for the display value.
+
+    def __init__(self, **kwargs):
+        self.display_field = kwargs.pop("display_field", "title")
+        super(CustomPKRelatedField, self).__init__(**kwargs)
+
+    def display_value(self, instance):
+        # Use a specific field rather than model stringification
+        return getattr(instance, self.display_field)
+
+
 class QuoteCreateSerializer(serializers.ModelSerializer):
-    categories=QuoteCategory.objects.all()
-    category_choice=[(str(category.id), category.title) for category in categories]
-    print(category_choice)
-    # category_choice=[('1', 'happy'),('2', 'sad'), ('3', 'life')]
-    categories=serializers.MultipleChoiceField(choices=category_choice)
+    # categories=QuoteCategory.objects.all()
+    # category_choice=[(str(category.id), category.title) for category in categories]
+    # categories=serializers.MultipleChoiceField(choices=category_choice)
+    categories = CustomPKRelatedField(queryset=QuoteCategory.objects.all(), many=True)
     # author=serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     author=serializers.PrimaryKeyRelatedField(read_only=True)
     class Meta:

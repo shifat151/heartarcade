@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     # rest framework
     'rest_framework',
     'rest_framework.authtoken',
+    # Django filters for rest api search fucntionality
+    'django_filters',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -54,6 +56,7 @@ REST_FRAMEWORK={
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'PAGE_SIZE': 10
 }
 

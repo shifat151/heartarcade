@@ -3,7 +3,6 @@ from quotes.models import Quote,QuoteCategory
 
 
 
-
 class QuotesSerializer(serializers.ModelSerializer):
     author=serializers.CharField(source='author.username', read_only=True)
     categories = serializers.StringRelatedField(many=True)
@@ -13,17 +12,12 @@ class QuotesSerializer(serializers.ModelSerializer):
         model = Quote
         fields = ['quote','author','categories','pub_date', 'slugged_username']
 
+
+
 class QuoteCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=QuoteCategory
         fields='__all__'
-    
-class QuoteDetailSerializer(serializers.ModelSerializer):
-    categories = serializers.StringRelatedField(many=True, read_only=True)
-    quote=serializers.CharField(style={'base_template': 'textarea.html'})
-    class Meta:
-        model = Quote
-        fields = ['quote','categories']
 
 class CustomPKRelatedField(serializers.PrimaryKeyRelatedField):
     # A PrimaryKeyRelatedField derivative that uses named field for the display value.
@@ -36,6 +30,15 @@ class CustomPKRelatedField(serializers.PrimaryKeyRelatedField):
         # Use a specific field rather than model stringification
         return getattr(instance, self.display_field)
 
+class QuoteDetailSerializer(serializers.ModelSerializer):
+    categories = CustomPKRelatedField(queryset=QuoteCategory.objects.all(), many=True)
+    quote=serializers.CharField(style={'base_template': 'textarea.html'})
+    class Meta:
+        model = Quote
+        fields = ['quote','categories']
+
+
+
 
 class QuoteCreateSerializer(serializers.ModelSerializer):
     # categories=QuoteCategory.objects.all()
@@ -47,5 +50,4 @@ class QuoteCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model=Quote
         fields=['quote','author', 'categories']
-
 

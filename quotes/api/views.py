@@ -2,10 +2,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.filters import SearchFilter,OrderingFilter 
 
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView
 from quotes.models import Quote, QuoteCategory
 from registration.models import User
 from quotes.api.serializers import QuotesSerializer, QuoteDetailSerializer, QuoteCreateSerializer, QuoteCategorySerializer
@@ -22,16 +22,33 @@ from django.shortcuts import get_object_or_404
 #         return Response(serializer.data)
 
 class apiQuotesView(ListAPIView):
-    queryset=Quote.objects.order_by('-pub_date').prefetch_related('author')
+    queryset=Quote.objects.all()
     serializer_class=QuotesSerializer
     Pagiantion_class=PageNumberPagination
     permission_classes = []
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['author__username']
 
 
 class apiCategoryView(ListAPIView):
     queryset=QuoteCategory.objects.all()
     serializer_class=QuoteCategorySerializer
     permission_classes = []
+
+
+@api_view(['GET',])
+def apiCategoryListView(request, quote_cat):
+    quoteCat=get_object_or_404(QuoteCategory, title=quote_cat)
+    print(quoteCat)
+    # newquoteCat=quoteCat.quote_set.all()
+    newquoteCat=Quote.objects.filter(categories__title__exact=quoteCat)
+    print(newquoteCat)
+    if request.method=="GET":
+        serializer=QuotesSerializer(newquoteCat, many=True)
+        return Response(serializer.data)
+
+    
+
 
 
 
@@ -41,6 +58,7 @@ def apiQuoteDetailView(request, quote_id):
     if request.method== "GET":
         serializer=QuoteDetailSerializer(quote)
         return Response(serializer.data)
+        
 
 @api_view(['GET','PUT'])
 @permission_classes((IsAuthenticated,))
@@ -60,6 +78,7 @@ def apiQuoteEditView(request, quote_id):
     else:
         serializer=QuoteDetailSerializer(quote)
         return Response(serializer.data)
+
 
 
 @api_view(['DELETE',])

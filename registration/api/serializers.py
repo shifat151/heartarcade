@@ -15,12 +15,19 @@ class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username','email','password', 'password2']
-        
+    
+    def validate_username(self, username):
+        username_exists=User.objects.filter(username__iexact=username)
+        if username_exists:
+            raise serializers.ValidationError({'username':'This username already exists'})
+        return username
+
     def validate_email(self, email):
         email_exists=User.objects.filter(email=email)
         if email_exists:
             raise serializers.ValidationError({'email':'This email already exists'})
         return email
+        
     def validate_password(self, password):
         if password.isdigit():
             raise serializers.ValidationError('Your password should contain letters!')
@@ -56,3 +63,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
 #         user.set_password(validated_data['password'])
 #         user.save()
 #         return user
+

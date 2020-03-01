@@ -29,3 +29,4 @@ def CreateUserAPIView(request):
 #         permissions.AllowAny
 #     ]
 #     serializer_class=RegistrationSerializer
+

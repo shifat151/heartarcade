@@ -8,7 +8,10 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView
 from quotes.models import Quote, QuoteCategory
 from registration.models import User
-from quotes.api.serializers import QuotesSerializer, QuoteDetailSerializer, QuoteCreateSerializer, QuoteCategorySerializer
+from quotes.api.serializers import (QuotesSerializer,
+ QuoteDetailSerializer,
+  QuoteCreateSerializer,
+   QuoteCategorySerializer)
 from django.shortcuts import get_object_or_404
 
 # @api_view(['GET',])
@@ -39,7 +42,7 @@ class apiCategoryView(ListAPIView):
 @api_view(['GET',])
 def apiCategoryListView(request, quote_cat):
     quoteCat=get_object_or_404(QuoteCategory, title=quote_cat)
-    print(quoteCat)
+    # print(quoteCat)
     # newquoteCat=quoteCat.quote_set.all()
     newquoteCat=Quote.objects.filter(categories__title__exact=quoteCat)
     print(newquoteCat)
@@ -120,3 +123,5 @@ class apiQuoteCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated,]
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+

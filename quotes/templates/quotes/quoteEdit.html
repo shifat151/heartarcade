@@ -9,7 +9,7 @@
         <br>
         <br>
         <br>
-        <form method="POST">
+        <form action="{% url 'create' %}" method="POST">
             {% csrf_token %}
             {{ form|crispy }}
             <br>

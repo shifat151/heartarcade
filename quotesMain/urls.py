@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
+from django.conf import settings
 from quotes import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,7 +21,5 @@ urlpatterns = [
     path('api/quote/', include('quotes.api.urls', namespace='quotes_api')),
     path('api/account/', include('registration.api.urls', namespace='registration_api')),
     path('api/profile/', include('profiles.api.urls', namespace='profiles_api')),
-        
-        
-
-]
+             
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

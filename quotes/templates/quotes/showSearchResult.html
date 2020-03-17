@@ -11,7 +11,7 @@
         <div class="card" style="max-width: 20rem; border: 2px solid black; opacity: 0.9;">
             <div class="card-body">
                 <h5 class="card-title"></h5>
-                <p class="card-text" style="font-size: larger;">{{ quote.quote }}</p>
+                <p class="card-text" style="font-size: larger;"><q>{{ quote.quote }}</q></p>
                 <p class="card-text"> by
                     {% if quote.author.username != user.username %}
                     <a href="{% url 'showProfile' quote.author.slugged_username %}">{{ quote.author}}</a>

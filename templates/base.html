@@ -1,9 +1,10 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
 
 <head>
-    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Quotes with different Categories ">
@@ -83,8 +84,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-                    <ul class="navbar-nav mr-auto ">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <ul class="navbar-nav mr-auto">
                         {% if user.is_authenticated %}
                         <a class="nav-item nav-link {{ proStatus }}" href="{% url 'profile' user.id %}">
                             <span class="oi oi-person"></span> Profile</a>
@@ -130,7 +131,6 @@
 
                         <button type="button" class="btn ml-1" onclick="location.href='{% url 'signup'%}'"
                             style="max-width: 5em;">Sign up</button>
-                        
 
 
                         {% endif %}
@@ -166,7 +166,7 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-danger"
                             onclick="location.href='{% url 'logout' %}';">Logout</button>
-                            
+
                     </div>
                 </div>
             </div>

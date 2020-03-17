@@ -136,13 +136,13 @@ SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email, picture.type(large), link'
     }
 #o store the data in the database, we need to specify them in SOCIAL_AUTH_FACEBOOK_EXTRA_DATA.
-SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 # add this
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                
     ('name', 'name'),
     ('email', 'email'),
     ('picture', 'picture'),
     ('link', 'profile_url'),
     ]
-SOCIAL_AUTH_TWITTER_EXTRA_DATA = [                 # add this
+SOCIAL_AUTH_TWITTER_EXTRA_DATA = [                 
     ('name', 'name'),
     ('email', 'email'),
     ('picture', 'picture'),

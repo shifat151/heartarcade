@@ -65,25 +65,42 @@ def create(request):
 #     else:
 #         return render(request, 'quotes/template.html', {'timezones': pytz.common_timezones})
 
+# @login_required()
+# def editQuote(request, quote_id):
+
+#     singlequote=get_object_or_404(Quote,id=quote_id)
+#     if request.method=='POST':
+#         form=editForm(request.POST)
+#         if form.is_valid():
+#             singlequote.quote=form.cleaned_data['new_quote']
+#             category=form.cleaned_data['new_category']
+#             singlequote.save()
+#             # newCategory=QuoteCategory.objects.filter(title__in=category)
+#             singlequote.categories.set(category)
+#             return redirect('profile',user_id=request.user.id)
+#         else:
+#             return render(request, 'quotes/quoteEdit.html',{'form':form, 'quote':singlequote})
+#     if request.method=='GET':
+#         form=editForm(initial={'new_quote':singlequote.quote})
+#         return render(request, 'quotes/quoteEdit.html',{'form':form, 'quote':singlequote})
+
 @login_required()
 def editQuote(request, quote_id):
-
     singlequote=get_object_or_404(Quote,id=quote_id)
     if request.method=='POST':
         form=editForm(request.POST)
         if form.is_valid():
-            singlequote.quote=form.cleaned_data['new_quote']
-            category=form.cleaned_data['new_category']
-            singlequote.save()
-            # newCategory=QuoteCategory.objects.filter(title__in=category)
-            singlequote.categories.set(category)
-            return redirect('profile',user_id=request.user.id)
+            pending_form=form.save(commit=False)
+            pending_form.save()
+            form.save_m2m()
         else:
             return render(request, 'quotes/quoteEdit.html',{'form':form, 'quote':singlequote})
-    if request.method=='GET':
-        form=editForm(initial={'new_quote':singlequote.quote})
+    else:
+        form=editForm(instance=singlequote)
         return render(request, 'quotes/quoteEdit.html',{'form':form, 'quote':singlequote})
-    
+
+
+
 # class quoteUpdateView(UpdateView):
 #     model=Quote
 #     template_name='quotes/quoteEdit.html'

@@ -99,7 +99,7 @@
                   <button class="btn btn-outline-primary btn-sm float-right" title="Edit quote"
                     onclick="window.location='{% url 'editQuote' quote.id %}';"><i class="fas fa-edit"></i></button>
                   <button type="button" class="btn btn-outline-danger btn-sm float-right mr-2" title="Delete quote"
-                    data-toggle="modal" data-target="#exampleModalCenter">
+                    data-toggle="modal" data-target="#modalDelete{{ quote.id }}">
                     <span style="color: red;" class="oi oi-trash"></span>
                   </button>
                 </div>
@@ -117,8 +117,8 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modalDelete{{ quote.id }}" tabindex="-1" role="dialog"
+          aria-labelledby="modalDelete{{ quote.id }}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">

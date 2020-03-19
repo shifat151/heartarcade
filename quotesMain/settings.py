@@ -1,5 +1,5 @@
-import django_heroku
 import os
+import django_heroku
 from decouple import config, Csv
 
 

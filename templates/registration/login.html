@@ -11,6 +11,12 @@
         ">Welcome to HeartArcade</h3>
         <br>
         <br>
+        {% if next %}
+        <div class="alert alert-danger text-center" role="alert">
+            <p>You have to login to see the requested page.</p>
+          </div>
+        
+        {% endif %}
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             {{ form|crispy }}

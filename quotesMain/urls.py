@@ -9,7 +9,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('quotes/', include('quotes.urls')),
     path('registration/', include('registration.urls')),
     path('profile/', include('profiles.urls')),
@@ -22,6 +22,5 @@ urlpatterns = [
     path('api/quote/', include('quotes.api.urls', namespace='quotes_api')),
     path('api/account/', include('registration.api.urls', namespace='registration_api')),
     path('api/profile/', include('profiles.api.urls', namespace='profiles_api')),
-    path('', RedirectView.as_view(url='home/')),
              
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

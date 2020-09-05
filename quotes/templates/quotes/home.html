@@ -1,7 +1,6 @@
-
+{% extends "base.html" %}
 {% load tz %}
-
-<h1>Testing</h1>
+{% block content %}
 <!-- <div class="row">
   {% for quote in quotes %}
   <div class="row">
@@ -118,3 +117,4 @@
 <a class="floating-button" href="{% url 'create' %}"><span class="oi oi-plus"></span></a>
 
 {% endif %}
+{% endblock %}

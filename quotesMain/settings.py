@@ -207,7 +207,6 @@ USE_TZ = True
 
 # python manage.py collects the static files into static roots
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS=[

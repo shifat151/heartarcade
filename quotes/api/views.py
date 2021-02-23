@@ -63,7 +63,7 @@ def apiQuoteDetailView(request, quote_id):
         return Response(serializer.data)
         
 
-@api_view(['GET','PUT'])
+@api_view(['PUT'])
 @permission_classes((IsAuthenticated,))
 def apiQuoteEditView(request, quote_id):
     quote=get_object_or_404(Quote,id=quote_id)
@@ -79,8 +79,7 @@ def apiQuoteEditView(request, quote_id):
             return Response(data=data)
         return Response(serializer.errors, status=status.HTTP_404_BAD_REQUEST)
     else:
-        serializer=QuoteDetailSerializer(quote)
-        return Response(serializer.data)
+        return Response({'response':"Method {} not allowed." .format(request.method)})
 
 
 
@@ -99,6 +98,8 @@ def apiQuoteDeleteView(request, quote_id):
         else:
             data['failure']="delete failed"
         return Response(data=data)
+    else:
+        return Response({'response':"Method {} not allowed." .format(request.method)})
 
 
 # @api_view(['GET','POST',])
@@ -121,6 +122,8 @@ def apiQuoteDeleteView(request, quote_id):
 class apiQuoteCreateView(CreateAPIView):
     serializer_class = QuoteCreateSerializer
     permission_classes = [IsAuthenticated,]
+    # Called by CreateModelMixin when saving a new object instance.
+    #These hooks are particularly useful for setting attributes that are implicit in the request, but are not part of the request data
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 

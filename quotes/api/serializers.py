@@ -44,7 +44,7 @@ class QuoteCreateSerializer(serializers.ModelSerializer):
     # categories=QuoteCategory.objects.all()
     # category_choice=[(str(category.id), category.title) for category in categories]
     # categories=serializers.MultipleChoiceField(choices=category_choice)
-    categories = CustomPKRelatedField(queryset=QuoteCategory.objects.all(), many=True, required=True)
+    # categories = CustomPKRelatedField(queryset=QuoteCategory.objects.all(), many=True, required=True)
     # author=serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     author=serializers.PrimaryKeyRelatedField(read_only=True)
     class Meta:

@@ -4,6 +4,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 app_name='registration'
 
 urlpatterns = [
-    path('register', views.CreateUserAPIView, name='api_registration'),
-    path('login', obtain_auth_token, name='login'),
+    path('signup/', views.CreateUserAPIView, name='api_registration'),
+    path('login/', obtain_auth_token, name='login'),
 ]

@@ -1,6 +1,6 @@
 from rest_framework import status, permissions
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.generics import CreateAPIView
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 from registration.api.serializers import RegistrationSerializer
 
 @api_view(['POST',])
+@authentication_classes([])
+@permission_classes([])
 def CreateUserAPIView(request):
     if request.method== 'POST':
         serializer=RegistrationSerializer(data=request.data)

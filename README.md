@@ -27,7 +27,7 @@ A website developed with Django framework which offers the member to write quote
 
 ## Sample API Request & Response
 **POST api/account/signup/**
-Details:This API end point is for creating a new user.
+- Details:This API end point is for creating a new user.
 
 Request body:
 ```json

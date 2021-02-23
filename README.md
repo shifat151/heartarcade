@@ -27,6 +27,7 @@ A website developed with Django framework which offers the member to write quote
 
 ## Sample API Request & Response
 **POST api/account/signup/**
+Details:This API end point is for creating a new user.
 
 Request body:
 ```json
@@ -49,6 +50,7 @@ Response body:
 ```
 
 **POST api/account/login/**
+Details:This API end point is for signing in the new user.
 
 Request body:
 ```json
@@ -66,7 +68,7 @@ Response body:
 ```
 
 **GET /api/quote/**
-
+Details:This API end point is for Getting all the quotes.
 
 Response body:
 ```json
@@ -112,7 +114,7 @@ Response body:
 ```
 
 **GET api/quote/category/**
-
+Details:This API end point is for getting all the quote categories. Token Authentication required.
 
 Response body:
 ```json
@@ -166,7 +168,7 @@ Response body:
 ```
 
 **GET api/quote/:quote_category/**
-
+Details:This API end point is for getting all the quote categories. Token Authentication required.
 
 Response body:
 ```json
@@ -196,6 +198,7 @@ Response body:
 ```
 
 **POST api/quote/create/**
+Details:This API end point is for creating a new quote. Token Authentication required.
 
 Request body:
 ```json
@@ -221,7 +224,7 @@ Response body:
 ```
 
 **GET api/quote/:quote_id/**
-
+Details:This API end point is for getting the details of a specific quote. Token Authentication required.
 
 Response body:
 ```json
@@ -235,6 +238,7 @@ Response body:
 ```
 
 **POST api/quote/:id/edit/**
+Details:This API end point is for updating a sprcific quote. Token Authentication required.
 
 Request body:
 ```json
@@ -256,6 +260,7 @@ Response body:
 ```
 
 **DELETE api/quote/:id/delete/**
+Details:This API end point is for deleting a specific quote. Token Authentication required.
 
 Response body:
 ```json
@@ -265,6 +270,7 @@ Response body:
 ```
 
 **GET api/profile/:slug_username/**
+Details:This API end point is for getting all the quotes published by a specific user. Token Authentication required.
 
 Response body:
 ```json
@@ -319,6 +325,7 @@ Response body:
 ```
 
 **GET api/profile/**
+Details:This API end point is for getting the details of the users. Token Authentication required.
 
 Response body:
 ```json
@@ -329,6 +336,7 @@ Response body:
 ```
 
 **GET api/profile/change-username**
+Details:This API end point is for getting the username of the users. Token Authentication required.
 
 Response body:
 ```json
@@ -338,6 +346,7 @@ Response body:
 ```
 
 **PUT api/profile/change-username**
+Details:This API end point is for updating the username of the users. Token Authentication required.
 
 Request body:
 ```json
@@ -354,6 +363,7 @@ Response body:
 ```
 
 **PUT api/profile/change-password/**
+Details:This API end point is for updating the password of the users. Token Authentication required.
 
 Request body:
 ```json

@@ -33,8 +33,8 @@ Request body:
 {
     "username": "NeilArmstrong",
     "email": "neil123@gmail.com",
-    "password":"asdasd123",
-    "password2":"asdasd123"
+    "password":"********",
+    "password2":"********"
 }
 ```
 
@@ -54,14 +54,14 @@ Request body:
 ```json
 {
     "username": "NeilArmstrong",
-    "password":"asdasd123"
+    "password":"********"
 }
 ```
 
 Response body:
 ```json
 {
-    "token": "ea1aeef0258fe48921a522f08fefd7c18d99b7bc"
+    "token": "ea1beef0258ye48921a622f08fefd7c18d99b7bc"
 }
 ```
 

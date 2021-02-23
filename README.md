@@ -108,7 +108,6 @@ Response body:
             "pub_date": "02/16/20",
             "slugged_username": "shifat123"
         },
-        .........
     ]
 }
 ```

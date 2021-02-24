@@ -166,8 +166,8 @@ Response body:
 }
 ```
 
-**GET api/quote/:quote_category/**
-- Details:This API end point is for getting all the quote categories. Token Authentication required.
+**GET api/quote/category/:category/**
+- Details:This API end point is for getting all the quote under a specific category. Token Authentication required.
 
 Response body:
 ```json
@@ -237,7 +237,7 @@ Response body:
 ```
 
 **POST api/quote/:id/edit/**
-- Details:This API end point is for updating a sprcific quote. Token Authentication required.
+- Details:This API end point is for updating a specific quote. Token Authentication required.
 
 Request body:
 ```json

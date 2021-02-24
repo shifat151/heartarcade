@@ -50,7 +50,7 @@ Response body:
 ```
 
 **POST api/account/login/**
-- Details:This API end point is for signing in the new user.
+- Details:This API end point is for signing in the users.
 
 Request body:
 ```json
